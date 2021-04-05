@@ -25,7 +25,10 @@ Route::get('vaccinations', [\App\Http\Controllers\VaccinationController::class, 
 Route::get('vaccinations/location/{location_id}', [\App\Http\Controllers\VaccinationController::class, 'getByLocation']);
 
 // Impfung hinzufügen
-Route::post('vaccinations', [\App\Http\Controllers\VaccinationController::class, 'addVaccination']);
+Route::post('vaccinations', [\App\Http\Controllers\VaccinationController::class, 'save']);
+
+// Impfung updaten
+Route::put('vaccinations/{id}', [\App\Http\Controllers\VaccinationController::class, 'update']);
 
 // Impfung löschen
-Route::delete('vaccinations/{vaccination_id}', [\App\Http\Controllers\VaccinationController::class, 'delete']);
+Route::delete('vaccinations/{id}', [\App\Http\Controllers\VaccinationController::class, 'delete']);
