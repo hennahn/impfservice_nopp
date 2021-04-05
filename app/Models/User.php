@@ -6,6 +6,8 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 
 class User extends Authenticatable
 {
@@ -17,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'firstName', 'lastName', 'sex', 'password', 'phone', 'email', 'ssno', 'street', 'zipCode', 'houseNo', 'city', 'isAdmin', 'status'
     ];
 
     /**
@@ -37,4 +39,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    //location has many vaccinations; vaccination belongs to one location (1:N)
+    public function vaccination() : BelongsTo {
+        return $this->belongsTo(Vaccination::class);
+
+    }
+
 }

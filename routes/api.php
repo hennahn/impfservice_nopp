@@ -17,3 +17,15 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// alle Impfungen
+Route::get('vaccinations', [\App\Http\Controllers\VaccinationController::class, 'getAllVaccinations']);
+
+// alle impfungen pro location
+Route::get('vaccinations/location/{location_id}', [\App\Http\Controllers\VaccinationController::class, 'getByLocation']);
+
+// Impfung hinzufügen
+Route::post('vaccinations', [\App\Http\Controllers\VaccinationController::class, 'addVaccination']);
+
+// Impfung löschen
+Route::delete('vaccinations/{vaccination_id}', [\App\Http\Controllers\VaccinationController::class, 'delete']);
