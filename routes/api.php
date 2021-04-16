@@ -24,6 +24,9 @@ Route::get('vaccinations', [\App\Http\Controllers\VaccinationController::class, 
 // alle impfungen pro location
 Route::get('vaccinations/location/{location_id}', [\App\Http\Controllers\VaccinationController::class, 'getByLocation']);
 
+// impfung mit id finden
+Route::get('vaccinations/{id}',[\App\Http\Controllers\VaccinationController::class,'getById']);
+
 // Impfung hinzufügen
 Route::post('vaccinations', [\App\Http\Controllers\VaccinationController::class, 'save']);
 

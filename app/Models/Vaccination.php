@@ -11,7 +11,7 @@ class Vaccination extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['date', 'from', 'to', 'maxParticipants', 'location_id'];
+    protected $fillable = ['from', 'to', 'maxParticipants', 'location_id'];
 
     //location has many vaccinations; vaccination belongs to one location (1:N)
     public function location() : BelongsTo {

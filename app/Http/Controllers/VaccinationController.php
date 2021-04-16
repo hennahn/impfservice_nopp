@@ -31,12 +31,23 @@ class VaccinationController extends Controller
     }
 
     /**
+     * Termin über ID holen
+     * @param string $id
+     * @return mixed
+     */
+    public function getById(string $id)
+    {
+        $vaccination = Vaccination::where('id', $id)->with(['location'])->get()->first();
+        return $vaccination;
+    }
+
+    /**
      * Neuen Impftermin anlegen
      * @param Request $request
      * @return JsonResponse
      */
     public function save(Request $request): JsonResponse {
-        //$request = $this->parseRequest($request);
+        $request = $this->parseRequest($request);
 
         DB::beginTransaction();
         try {
@@ -67,6 +78,7 @@ class VaccinationController extends Controller
             $vaccination = Vaccination::with(['location'])->where('id', $id)->first();
 
             if ($vaccination != null) {
+                $request = $this->parseRequest($request);
                 $vaccination->update($request->all());
                 $vaccination->save();
             }
@@ -96,5 +108,18 @@ class VaccinationController extends Controller
         else
             throw new \Exception("vaccination couldn't be deleted - it does not exist");
         return response()->json('vaccination (' . $id . ') successfully deleted', 200);
+    }
+
+    /**
+     * From und zu holen und parsen
+     * @param Request $request
+     * @return Request
+     */
+    private function parseRequest(Request $request) : Request {
+        $from = new \DateTime($request->from);
+        $to = new \DateTime($request->to);
+        $request['from'] = $from;
+        $request['to'] = $to;
+        return $request;
     }
 }
