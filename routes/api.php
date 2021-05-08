@@ -2,6 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use \App\Http\Controllers\VaccinationController;
+use App\Http\Controllers\LocationController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -18,20 +21,26 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// alle Impfungen
-Route::get('vaccinations', [\App\Http\Controllers\VaccinationController::class, 'getAllVaccinations']);
+// Alle Impfungen
+Route::get('vaccinations', [VaccinationController::class, 'getAllVaccinations']);
 
-// alle impfungen pro location
-Route::get('vaccinations/location/{location_id}', [\App\Http\Controllers\VaccinationController::class, 'getByLocation']);
+// Alle impfungen pro Location
+Route::get('vaccinations/location/{location_id}', [VaccinationController::class, 'getByLocation']);
 
-// impfung mit id finden
-Route::get('vaccinations/{id}',[\App\Http\Controllers\VaccinationController::class,'getById']);
+// Impfung mit id finden
+Route::get('vaccinations/{id}',[VaccinationController::class,'getById']);
 
 // Impfung hinzufügen
-Route::post('vaccinations', [\App\Http\Controllers\VaccinationController::class, 'save']);
+Route::post('vaccinations', [VaccinationController::class, 'save']);
 
 // Impfung updaten
-Route::put('vaccinations/{id}', [\App\Http\Controllers\VaccinationController::class, 'update']);
+Route::put('vaccinations/{id}', [VaccinationController::class, 'update']);
 
 // Impfung löschen
-Route::delete('vaccinations/{id}', [\App\Http\Controllers\VaccinationController::class, 'delete']);
+Route::delete('vaccinations/{id}', [VaccinationController::class, 'delete']);
+
+// alle Locations
+Route::get('locations',[LocationController::class, 'getAllLocations']);
+
+// Location mit id finden
+Route::get('locations/{id}',[LocationController::class,'getLocationById']);
