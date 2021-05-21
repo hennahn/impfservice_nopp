@@ -16,7 +16,6 @@ class User extends Authenticatable implements JWTSubject
 
     /**
      * The attributes that are mass assignable.
-     *
      * @var array
      */
     protected $fillable = [
@@ -25,7 +24,6 @@ class User extends Authenticatable implements JWTSubject
 
     /**
      * The attributes that should be hidden for arrays.
-     *
      * @var array
      */
     protected $hidden = [
@@ -34,14 +32,15 @@ class User extends Authenticatable implements JWTSubject
 
     /**
      * The attributes that should be cast to native types.
-     *
      * @var array
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
 
-    //location has many vaccinations; vaccination belongs to one location (1:N)
+    /**
+     * @return BelongsTo
+     */
     public function vaccination() : BelongsTo {
         return $this->belongsTo(Vaccination::class);
 

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\VaccinationController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 
 
 /*
@@ -36,6 +37,10 @@ Route::get('vaccinations/{id}',[VaccinationController::class,'getById']);
 Route::get('locations',[LocationController::class, 'getAllLocations']);
 // Location mit id finden
 Route::get('locations/{id}',[LocationController::class,'getLocationById']);
+// alle User*innen
+Route::get('users',[UserController::class, 'getAllUsers']);
+// user*in mit id finden
+Route::get('users/{id}',[UserController::class,'getUserById']);
 // Login
 Route :: post ( 'auth/login' , [ AuthController :: class , 'login' ]);
 
