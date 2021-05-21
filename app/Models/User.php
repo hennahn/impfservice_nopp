@@ -58,13 +58,11 @@ class User extends Authenticatable implements JWTSubject
 
     /**
      * @return array
-     * TODO: weitere Attribute mitgeben: rolle + impfstatus
      * */
     public function getJWTCustomClaims()
     {
         return [ 'user' => [
             'id' => $this->id,
-            'firstName' => $this->firstName,
             'isAdmin' => $this->isAdmin,
             'status' => $this->status
         ]];
