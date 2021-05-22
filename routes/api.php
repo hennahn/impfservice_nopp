@@ -59,7 +59,8 @@ Route::group(['middleware' => ['api', 'auth.jwt']], function(){
     Route::delete('vaccinations/{id}', [VaccinationController::class, 'delete']);
     // Logout
     Route::post('auth/logout', [AuthController::class, 'logout']);
-
+    // Termin buchen
+    Route::put('vaccinations/{id}/book', [VaccinationController::class, 'bookVaccination']);
 });
 
 

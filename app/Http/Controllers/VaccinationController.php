@@ -111,6 +111,37 @@ class VaccinationController extends Controller
     }
 
     /**
+     * User*in zu einem Termin anmelden
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function bookVaccination(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            $user = User::where('id', $request->userId)->first(); //User*in holen
+            if ($user != null) {
+                if($user['vaccination_id'] == null){
+                    $user['vaccination_id'] = $request->vaccinationId;
+                    $user->save();
+                } else {
+                    return response()->json("User*in hat bereits einen Impftermin.", 201);
+                }
+            }
+            DB::commit();
+            //$user1 = User::with(['vacciantion'])->where('id', $request->userId)->first();
+            //return response()->json($user1, 201);
+            return;
+        }
+        catch (\Exception $e) {
+            // rollback all queries
+            DB::rollBack();
+            return response()->json("updating vaccination failed: " . $e->getMessage(), 420);
+        }
+
+    }
+
+    /**
      * From und zu holen und parsen
      * @param Request $request
      * @return Request
