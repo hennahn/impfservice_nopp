@@ -82,7 +82,7 @@ class UsersTableSeeder extends Seeder
         $user4->houseNo = "12";
         $user4->city = "Regau";
         $user4->isAdmin = false;
-        $user4->status = true;
+        $user4->status = false;
 
         $user4->save();
 
@@ -118,7 +118,7 @@ class UsersTableSeeder extends Seeder
         $user6->houseNo = "1";
         $user6->city = "Linz";
         $user6->isAdmin = false;
-        $user6->status = true;
+        $user6->status = false;
 
         $user6->save();
 
@@ -154,7 +154,7 @@ class UsersTableSeeder extends Seeder
         $user8->houseNo = "13";
         $user8->city = "Linz";
         $user8->isAdmin = false;
-        $user8->status = true;
+        $user8->status = false;
 
         $user8->save();
     }
