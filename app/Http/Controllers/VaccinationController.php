@@ -129,8 +129,6 @@ class VaccinationController extends Controller
                 }
             }
             DB::commit();
-            //$user1 = User::with(['vacciantion'])->where('id', $request->userId)->first();
-            //return response()->json($user1, 201);
             return;
         }
         catch (\Exception $e) {
