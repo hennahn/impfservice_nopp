@@ -14,6 +14,10 @@ class Location extends Model
         'name', 'street', 'houseNo', 'zipCode', 'city'
     ];
 
+    /**
+     * An 1 Ort können N Impfungen stattfinden
+     * @return HasMany
+     */
     public function vaccinations() : HasMany {
         return $this->hasMany(Vaccination::class);
     }

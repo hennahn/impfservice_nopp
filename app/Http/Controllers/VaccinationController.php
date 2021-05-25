@@ -21,16 +21,6 @@ class VaccinationController extends Controller
     }
 
     /**
-     * Alle Termine pro Location anzeigen
-     * @param $location_id
-     * @return mixed
-     */
-    public function getByLocation($location_id) {
-        $vaccinations = Vaccination::where('location_id', $location_id)->with(['location'])->get();
-        return $vaccinations;
-    }
-
-    /**
      * Termin über ID holen
      * @param string $id
      * @return mixed
@@ -137,7 +127,6 @@ class VaccinationController extends Controller
             DB::rollBack();
             return response()->json("associating vaccination failed: " . $e->getMessage(), 420);
         }
-
     }
 
     /**

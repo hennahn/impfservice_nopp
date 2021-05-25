@@ -29,8 +29,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
  */
 // Alle Impfungen
 Route::get('vaccinations', [VaccinationController::class, 'getAllVaccinations']);
-// Alle impfungen pro Location
-Route::get('vaccinations/location/{location_id}', [VaccinationController::class, 'getByLocation']);
 // Impfung mit id finden
 Route::get('vaccinations/{id}',[VaccinationController::class,'getById']);
 // alle Locations
@@ -39,7 +37,7 @@ Route::get('locations',[LocationController::class, 'getAllLocations']);
 Route::get('locations/{id}',[LocationController::class,'getLocationById']);
 // alle User*innen
 Route::get('users',[UserController::class, 'getAllUsers']);
-// user*in mit id finden
+// User*in mit id finden
 Route::get('users/{id}',[UserController::class,'getUserById']);
 // Login
 Route :: post ( 'auth/login' , [ AuthController :: class , 'login' ]);

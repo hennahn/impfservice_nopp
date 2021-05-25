@@ -13,12 +13,19 @@ class Vaccination extends Model
 
     protected $fillable = ['from', 'to', 'maxParticipants', 'location_id'];
 
-    //location has many vaccinations; vaccination belongs to one location (1:N)
+    /**
+     * Eine Impfung kann nur an 1 Ort stattfinden
+     * @return BelongsTo
+     */
     public function location() : BelongsTo {
         return $this->belongsTo(Location::class);
 
     }
 
+    /**
+     * Eine Impfung kann N Teilnehmer*innen haben
+     * @return HasMany
+     */
     public function users() : HasMany {
         return $this->hasMany(User::class);
     }

@@ -39,6 +39,7 @@ class User extends Authenticatable implements JWTSubject
     ];
 
     /**
+     * Ein*e User*in kann genau 1 Impftermin haben
      * @return BelongsTo
      */
     public function vaccination() : BelongsTo {
