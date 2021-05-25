@@ -120,21 +120,22 @@ class VaccinationController extends Controller
         DB::beginTransaction();
         try {
             $user = User::where('id', $request->userId)->first(); //User*in holen
-            if ($user != null) {
+            $vaccination = Vaccination::where('id', $request->vaccinationId)->first(); //Vaccination holen
+            if ($user != null && $vaccination != null) {
                 if($user['vaccination_id'] == null){
-                    $user['vaccination_id'] = $request->vaccinationId;
+                    $user->vaccination()->associate($vaccination);
                     $user->save();
                 } else {
                     return response()->json("User*in hat bereits einen Impftermin.", 201);
                 }
             }
             DB::commit();
-            return;
+            return response()->json($user, 201);
         }
         catch (\Exception $e) {
             // rollback all queries
             DB::rollBack();
-            return response()->json("updating vaccination failed: " . $e->getMessage(), 420);
+            return response()->json("associating vaccination failed: " . $e->getMessage(), 420);
         }
 
     }
